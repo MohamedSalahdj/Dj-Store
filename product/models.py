@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
-# Create your models here.
+from taggit.managers import TaggableManager
+
 
 flags_type = (
     ('Sale', 'Sale'),
@@ -19,6 +20,7 @@ class Product(models.Model):
     sku = models.CharField(_('SKU'), max_length=12)
     subtittle = models.CharField(_('Subtitle'), max_length=300)
     brand = models.ForeignKey('Brand', verbose_name=_('Brand'), related_name='brand_product',on_delete=models.SET_NULL, null=True)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.name
