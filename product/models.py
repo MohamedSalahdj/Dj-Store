@@ -49,3 +49,6 @@ class Review(models.Model):
     created_at = models.DateTimeField(_('Created at'), default=timezone.now)
     customer = models.ForeignKey(User, verbose_name=_('Customer'), related_name='customer_review', on_delete=models.SET_NULL, null=True)
     Product = models.ForeignKey(Product, verbose_name=_('Product'), related_name='product_review', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '- '+ str(self.customer) + ' # ' +self.review 
