@@ -12,7 +12,7 @@ class ProductDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["review"] = Review.objects.filter(Product=self.get_object())
+        context["reviews"] = Review.objects.filter(Product=self.get_object())
         return context
     
 
