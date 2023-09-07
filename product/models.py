@@ -42,7 +42,7 @@ class Product_Images(models.Model):
 class Brand(models.Model):
     name = models.CharField(_('Name'), max_length=70)
     image = models.ImageField(_('Image'), upload_to='brands')
-    slug = models.SlugField()
+    slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
         return self.name
