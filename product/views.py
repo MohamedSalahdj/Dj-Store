@@ -18,3 +18,5 @@ class ProductDetail(DetailView):
     
 
 
+class BrandList(ListView):
+    model = Brand

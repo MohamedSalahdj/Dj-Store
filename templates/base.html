@@ -156,7 +156,7 @@
                                     <a class="navbar-link" href="/Products">shop</a>
                                 </li>
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="#">Brands</a>
+                                    <a class="navbar-link" href="brand/">Brands</a>
                                 </li>
                                 <li class="navbar-item dropdown">
                                     <a class="navbar-link" href="#">Orders</a>
@@ -923,6 +923,9 @@
         <script src="{% static 'en/js/accordion.js' %}"></script>
         <script src="{% static 'en/js/venobox.js' %}"></script>
         <script src="{% static 'en/js/slick.js' %}"></script>
+        {% block jsfiles %}
+        {% endblock jsfiles %}
+
         <script src="{% static 'en/js/main.js' %}"></script> 
         <!--=====================================
                     JS LINK PART END
