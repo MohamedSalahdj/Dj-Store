@@ -357,7 +357,6 @@
                             </div>
                         </div>
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
-                            {% comment %} Loop here  {% endcomment %}
                             {% for object in  product_list %}
                             <div class="col">
                                 <div class="product-card">
@@ -368,7 +367,7 @@
                                         <button class="product-wish wish">
                                             <i class="fas fa-heart"></i>
                                         </button>
-                                        <a class="product-image" href="{{object.id}}">
+                                        <a class="product-image" href="{{object.slug}}">
                                             <img src="{{object.image.url}}" style='width: 178px; height: 228px' alt="product">
                                         </a>
                                         <div class="product-widget">
@@ -387,7 +386,7 @@
                                             <a href="product-video.html">(3)</a>
                                         </div>
                                         <h6 class="product-name">
-                                            <a href="{{object.id}}">{{object.name}}</a>
+                                            <a href="{{object.slug}}">{{object.name}}</a>
                                         </h6>
                                         <h6 class="product-price">
                                             {% comment %} <del>$34</del> {% endcomment %}
