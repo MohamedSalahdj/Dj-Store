@@ -61,7 +61,7 @@
                                 <i class="active icofont-star"></i>
                                 <i class="active icofont-star"></i>
                                 <i class="icofont-star"></i>
-                                <a href="#">(3 reviews)</a>
+                                <a href="#">({{reviews|length}}) reviews</a>
                             </div>
                             <h3 class="details-price">
                                 {% comment %} <del>$38.00</del> {% endcomment %}
@@ -140,11 +140,11 @@
                                         </h5>
                                     </div>
                                     <ul class="review-rating">
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rate-blank"></li>
+                                        <li class="icofont-ui-{% if review.rate > 0 %}rating{%else%}rate-blank {%endif%}"></li>
+                                        <li class="icofont-ui-{% if review.rate > 1 %}rating{%else%}rate-blank {%endif%}"></li>
+                                        <li class="icofont-ui-{% if review.rate > 2 %}rating{%else%}rate-blank {%endif%}"></li>
+                                        <li class="icofont-ui-{% if review.rate > 3 %}rating{%else%}rate-blank {%endif%}"></li>
+                                        <li class="icofont-ui-{% if review.rate > 4 %}rating{%else%}rate-blank {%endif%}"></li>
                                     </ul>
                                     <p class="review-desc">{{review.review}}</p>
                                 </li>
