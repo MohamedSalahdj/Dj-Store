@@ -1,7 +1,9 @@
 from typing import Any, Dict
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.db.models import Q, F
 from .models import Product, Product_Images, Brand, Review
+
 
 def queryset_debug(request):
 
@@ -21,7 +23,20 @@ def queryset_debug(request):
     # data = Product.objects.filter(name__contains='Green')
     # data = Product.objects.filter(name__startswith='L')
     # data = Product.objects.filter(name__endswith='M')
-    data = Product.objects.filter(tags__isnull=True)
+    # data = Product.objects.filter(tags__isnull=True)
+
+    #filter with time 
+    # data = Review.objects.filter(created_at__year=2023)
+    # data = Review.objects.filter(created_at__month=2025)
+
+    #filter 2 values 
+    # data = Product.objects.filter(price__lt=1000, quantity__lt=15) #and
+    # data = Product.objects.filter(Q(price__lt=2000) & Q(quantity__gt=10)) # and
+    # data = Product.objects.filter( Q(price__lt=1000) | Q(quantity__gt=5) ) # OR
+    # data = Product.objects.filter(Q(price__gt=1000) & ~Q(quantity__lt=15)) # and with not
+    
+    #check two value equal  
+    data = Product.objects.filter(price=F('quantity'))
 
     context = {
         'data' : data
