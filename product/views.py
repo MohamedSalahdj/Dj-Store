@@ -2,6 +2,7 @@ from typing import Any, Dict
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.db.models import Q, F
+from django.db.models.aggregates import Min, Max, Sum, Count, Avg 
 from .models import Product, Product_Images, Brand, Review
 
 
@@ -56,10 +57,21 @@ def queryset_debug(request):
     # data = Product.objects.all()[:10]
 
     #select Columns
-    data = Product.objects.values('name', 'price') #dict
-    data = Product.objects.values('name', 'price', 'flag', 'quantity', 'brand__name') #dict
-    data = Product.objects.values_list('name', 'price', 'flag', 'quantity', 'brand__name') #tuple
+    # data = Product.objects.values('name', 'price') #dict
+    # data = Product.objects.values('name', 'price', 'flag', 'quantity', 'brand__name') #dict
+    # data = Product.objects.values_list('name', 'price', 'flag', 'quantity', 'brand__name') #tuple
 
+    #remove dublicate
+    # data = Product.objects.all().distinct()
+
+    #only , defer
+    # data = Product.objects.only('name','price','flag')
+    # data = Product.objects.defer('flag')
+
+    # Aggergations
+    # data = Product.objects.aggregate(Sum('quantity'))
+    data = Product.objects.aggregate(Avg('price'))
+    #aggergation
 
 
     context = {
