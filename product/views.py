@@ -36,7 +36,31 @@ def queryset_debug(request):
     # data = Product.objects.filter(Q(price__gt=1000) & ~Q(quantity__lt=15)) # and with not
     
     #check two value equal  
-    data = Product.objects.filter(price=F('quantity'))
+    # data = Product.objects.filter(price=F('quantity'))
+
+
+    #Ordering One value
+    # data = Product.objects.all().order_by('name') #= Product.objects.order_by('name') ASC
+    # data = Product.objects.order_by('-name') #DESC
+    # data = Product.objects.order_by('name').reverse() #DESC
+    
+    # ordering with tow value
+    # data = Product.objects.order_by('name', '-quantity')
+
+    #retrive some value 
+    # data = Product.objects.order_by('name')[0]
+    # data = Product.objects.earliest('name')
+    # data = Product.objects.latest('name')
+
+    #slice 
+    # data = Product.objects.all()[:10]
+
+    #select Columns
+    data = Product.objects.values('name', 'price') #dict
+    data = Product.objects.values('name', 'price', 'flag', 'quantity', 'brand__name') #dict
+    data = Product.objects.values_list('name', 'price', 'flag', 'quantity', 'brand__name') #tuple
+
+
 
     context = {
         'data' : data
