@@ -1,8 +1,6 @@
-import os
-import django
+import os, django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 django.setup()
-
 from faker import Faker
 import random
 from product.models import Brand, Product
@@ -17,6 +15,7 @@ def seed_brand(number_of_brands):
             image = f'brands/{random.choice(Brand_images)}',
         )
     print(f"added {number_of_brands} brands in db")
+
 
 def seed_products(number_of_products):
     fake = Faker()
