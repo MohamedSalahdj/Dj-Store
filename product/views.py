@@ -8,11 +8,20 @@ def queryset_debug(request):
     # data = Product.objects.all() 
     # data = Product.objects.select_related('brand').all() #=prefetch_related --> M-T-M
 
-    #filter  (> , <, >= , >=)
+    #filter  (> , <, >= , >=)m Range
     # data = Product.objects.select_related('brand').filter(price__gt=1500) # >
     # data = Product.objects.select_related('brand').filter(price__lt=1500) # < 
     # data = Product.objects.select_related('brand').filter(price__gte=2500) # >=
-    data = Product.objects.filter(price__lte=350)
+    # data = Product.objects.filter(price__lte=350)
+
+    #navigate relation
+    # data = Product.objects.filter(brand__name= 'Samsung')
+
+    #Filter With
+    # data = Product.objects.filter(name__contains='Green')
+    # data = Product.objects.filter(name__startswith='L')
+    # data = Product.objects.filter(name__endswith='M')
+    data = Product.objects.filter(tags__isnull=True)
 
     context = {
         'data' : data
