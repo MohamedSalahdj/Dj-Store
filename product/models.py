@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
+from django.db.models.aggregates import Avg
 
 flags_type = (
     ('Sale', 'Sale'),
@@ -25,6 +26,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def avg_rate(self):
+        avg = self.product_review.aggregate(product_avg=Avg('rate'))
+        return avg['product_avg']  if avg['product_avg'] else 0
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
