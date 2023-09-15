@@ -1,7 +1,7 @@
 from typing import Any, Dict
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.db.models import Q, F
+from django.db.models import Q, F, Value 
 from django.db.models.aggregates import Min, Max, Sum, Count, Avg 
 from .models import Product, Product_Images, Brand, Review
 
@@ -70,8 +70,11 @@ def queryset_debug(request):
 
     # Aggergations
     # data = Product.objects.aggregate(Sum('quantity'))
-    data = Product.objects.aggregate(Avg('price'))
-    #aggergation
+    # data = Product.objects.aggregate(Avg('price'))
+
+    #annotate 
+    # data = Product.objects.annotate(is_new=Value(True))
+    data = Product.objects.annotate(price_with_discount=F('price')*0.959)
 
 
     context = {
