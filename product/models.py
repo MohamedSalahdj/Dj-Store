@@ -29,7 +29,7 @@ class Product(models.Model):
 
     def avg_rate(self):
         avg = self.product_review.aggregate(product_avg=Avg('rate'))
-        return avg['product_avg']  if avg['product_avg'] else 0
+        return avg['product_avg'] if avg['product_avg'] else 0
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
