@@ -8,6 +8,7 @@ colorama==0.4.6
 distlib==0.3.6
 Django==4.2
 django-debug-toolbar==4.2.0
+django-filter==23.5
 django-taggit==4.0.0
 djangorestframework==3.14.0
 exceptiongroup==1.1.1
@@ -17,6 +18,7 @@ h11==0.14.0
 idna==3.4
 instagram-explore==0.3.0
 instaloader==4.9.6
+Markdown==3.5.2
 MouseInfo==0.1.3
 numpy==1.24.2
 opencv-python==4.7.0.72
