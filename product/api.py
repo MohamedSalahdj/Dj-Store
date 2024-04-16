@@ -6,7 +6,7 @@ from rest_framework import filters
 from .serializers import ProductListSerializer, ProductDetailsSerializer, BrandListSerializer, BrandDetailsSerializer
 from .models import Product, Brand
 from .filter_by_price_name import ProductFilter
-
+from .custom_pagination import CustomPagination
 
 
 # @api_view(['GET'])
@@ -42,6 +42,7 @@ class ProductDetailApi(generics.RetrieveAPIView):
 class BrandListApi(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandListSerializer
+    pagination_class = CustomPagination
 
 
 class BrandDetailApi(generics.RetrieveAPIView):
