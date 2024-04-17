@@ -5,8 +5,12 @@ certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==3.1.0
 colorama==0.4.6
+cryptography==42.0.5
+defusedxml==0.7.1
 distlib==0.3.6
+dj-rest-auth==6.0.0
 Django==4.2
+django-allauth==0.61.1
 django-debug-toolbar==4.2.0
 django-filter==23.5
 django-taggit==4.0.0
@@ -22,6 +26,7 @@ instaloader==4.9.6
 Markdown==3.5.2
 MouseInfo==0.1.3
 numpy==1.24.2
+oauthlib==3.2.2
 opencv-python==4.7.0.72
 outcome==1.2.0
 pandas==1.5.3
@@ -38,9 +43,11 @@ PyRect==0.2.0
 PyScreeze==0.1.28
 PySocks==1.7.1
 python-dateutil==2.8.2
+python3-openid==3.2.0
 pytweening==1.0.7
 pytz==2022.7.1
 requests==2.28.2
+requests-oauthlib==2.0.0
 schedule==1.2.0
 selenium==4.9.1
 six==1.16.0
