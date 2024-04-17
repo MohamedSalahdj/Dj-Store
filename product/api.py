@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.permissions import IsAuthenticated
 from .serializers import ProductListSerializer, ProductDetailsSerializer, BrandListSerializer, BrandDetailsSerializer
 from .models import Product, Brand
 from .filter_by_price_name import ProductFilter
@@ -34,9 +35,11 @@ class PeoductListApi(generics.ListAPIView):
     search_fields = ['name', 'subtittle', 'description']
     ordering_fields = ['price', 'quantity']
     filterset_class = ProductFilter
+
 class ProductDetailApi(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductDetailsSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class BrandListApi(generics.ListAPIView):
