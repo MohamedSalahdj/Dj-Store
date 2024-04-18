@@ -20,6 +20,12 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    def cart_total(self):
+        total = 0
+        for item in self.cart_detail.all():
+            total += item.total
+        return round(total, 2)
 
 
 class CartDetail(models.Model):
@@ -30,6 +36,11 @@ class CartDetail(models.Model):
 
     def __str__(self):
         return str(self.cart)
+
+    
+
+
+
 
 order_status = (
     ('Recieved', 'Recieved'),
