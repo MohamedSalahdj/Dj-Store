@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
-                    {% for object in  object_list %}
+                    {% for object in object_list %}
                     <div class="col">
                         <div class="product-card">
                             <div class="product-media">
@@ -84,7 +84,7 @@
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="product-video.html">
+                                <a class="product-image" href="{% url 'product_detail' object.slug %}">
                                     <img src="{{object.image.url}}" alt="product">
                                 </a>
                                 <div class="product-widget">

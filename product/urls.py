@@ -3,11 +3,11 @@ from .views import ProductList, ProductDetail, BrandList, BrandDetail, queryset_
 from .api import PeoductListApi, ProductDetailApi, BrandListApi, BrandDetailApi
 
 urlpatterns = [
-    path('',ProductList.as_view()),
+    path('',ProductList.as_view(), name='product_list'),
     path('debug',queryset_debug),
-    path('<slug:slug>',ProductDetail.as_view()),
-    path('brand/', BrandList.as_view()),
-    path('brand/<slug:slug>/', BrandDetail.as_view()),
+    path('<slug:slug>',ProductDetail.as_view(), name='product_detail'),
+    path('brand/', BrandList.as_view(), name='brand_list'),
+    path('brand/<slug:slug>/', BrandDetail.as_view(), name='brand_details'),
 
     #api urls
     path('api/list', PeoductListApi.as_view()),

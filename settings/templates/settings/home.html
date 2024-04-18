@@ -78,7 +78,7 @@
                 <ul class="suggest-slider slider-arrow">
                     {% for brand in brands %}
                     <li>
-                        <a class="suggest-card" href="shop-4column.html">
+                        <a class="suggest-card" href="{% url 'brand_details' brand.slug %}">
                             <img src="{{brand.image.url}}" alt="{{brand}}" style='width:238px;height:133px;'>
                             <h5>{{brand}} <span>{{brand.product_count}} items</span></h5>
                         </a>
@@ -115,7 +115,7 @@
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="product-video.html">
+                                <a class="product-image" href="{% url 'product_detail' item.slug %}">
                                     <img src="{{item.image.url}}" alt="{{item}}" style='width: 208px; height: 266px'>
                                 </a>
                                 <div class="product-widget">
@@ -212,7 +212,7 @@
                                 <button class="feature-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="feature-image" href="product-video.html">
+                                <a class="feature-image" href="{% url 'product_detail' item.slug %}">
                                     <img src="{{item.image.url}}" alt="{{item}}" style='width:208px;height:266px'>
                                 </a>
                                 <div class="feature-widget">
@@ -292,7 +292,7 @@
                                         <button class="product-wish wish">
                                             <i class="fas fa-heart"></i>
                                         </button>
-                                        <a class="product-image" href="product-video.html">
+                                        <a class="product-image" href="{% url 'product_detail' item.slug %}">
                                             <img src="{{item.image.url}}" alt="{{item}}" style='width:199px;height:199px'>
                                         </a>
                                         <div class="product-widget">
@@ -1838,7 +1838,7 @@
                         <div class="brand-media">
                             <img src="{{brand.image.url}}" alt="{{brand}}">
                             <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
+                                <a href="{% url 'brand_details' brand.slug %}"><i class="fas fa-link"></i></a>
                             </div>
                         </div>
                         <div class="brand-meta">
@@ -1851,7 +1851,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-50">
-                            <a href="brand-list.html" class="btn btn-outline">
+                            <a href="{% url 'brand_list' %}" class="btn btn-outline">
                                 <i class="fas fa-eye"></i>
                                 <span>view all brands</span>
                             </a>
