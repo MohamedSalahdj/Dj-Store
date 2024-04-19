@@ -37,10 +37,6 @@ class CartDetail(models.Model):
     def __str__(self):
         return str(self.cart)
 
-    
-
-
-
 
 order_status = (
     ('Received', 'Received'),
