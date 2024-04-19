@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Order, OrderDetail, Cart, CartDetail, Cupon 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
-class ListOrder(ListView):
+class ListOrder(LoginRequiredMixin, ListView):
     model = Order
     paginate_by = 6
 
@@ -13,7 +15,7 @@ class ListOrder(ListView):
 
 
 
-
+@login_required
 def checkout(request):
     cart = Cart.objects.get(user=request.user, status='Inprogress')
     cart_detail = CartDetail.objects.filter(cart=cart)
