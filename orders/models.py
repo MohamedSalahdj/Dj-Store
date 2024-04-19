@@ -43,7 +43,7 @@ class CartDetail(models.Model):
 
 
 order_status = (
-    ('Recieved', 'Recieved'),
+    ('Received', 'Received'),
     ('Processed', 'Processed'),
     ('Shipped', 'Shipped'),
     ('Delivered', 'Delivered')

@@ -39,7 +39,7 @@
                                 <label class="form-label">short by:</label>
                                 <select class="form-select">
                                     <option value="all" selected>all order</option>
-                                    <option value="recieved">recieved order</option>
+                                    <option value="Received">Received order</option>
                                     <option value="processed">processed order</option>
                                     <option value="shipped">shipped order</option>
                                     <option value="delivered">delivered order</option>
@@ -61,20 +61,24 @@
                                     <div class="col-lg-12">
                                         <div class="order-track">
                                             <ul class="order-track-list">
-                                                <li class="order-track-item active">
-                                                    <i class="icofont-check"></i>
-                                                    <span>order recieved</span>
+                                                
+                                                <li class="order-track-item{% if order.status == 'Received' or order.status == 'Processed' or order.status == 'Shipped' or order.status == 'Delivered' %} active {%endif%}">
+                                                    <i class="icofont-{% if order.status == 'Received' or order.status == 'Processed' or order.status == 'Shipped' or order.status == 'Delivered' %}check{%else%}close{%endif%}"></i>
+                                                    <span>order Received</span>
                                                 </li>
-                                                <li class="order-track-item">
-                                                    <i class="icofont-close"></i>
+                                                
+                                                <li class="order-track-item{% if order.status == 'Processed' or order.status == 'Shipped' or order.status == 'Delivered' %} active {%endif%}">
+                                                    <i class="icofont-{% if order.status == 'Processed' or order.status == 'Shipped' or order.status == 'Delivered' %}check{%else%}close{%endif%}"></i>
                                                     <span>order processed</span>
-                                                </li>
-                                                <li class="order-track-item">
-                                                    <i class="icofont-close"></i>
+                                                </li> 
+                                                
+                                                <li class="order-track-item{% if order.status == 'Shipped' or order.status == 'Delivered' %} active {%endif%}">
+                                                    <i class="icofont-{% if order.status == 'Shipped' or order.status == 'Delivered' %}check{%else%}close{%endif%}"></i>
                                                     <span>order shipped</span>
                                                 </li>
-                                                <li class="order-track-item">
-                                                    <i class="icofont-close"></i>
+                                                
+                                                <li class="order-track-item{% if order.status == 'Delivered' %} active {%endif%}">
+                                                    <i class="icofont-{% if order.status == 'Delivered' %}check{%else%}close{%endif%}"></i>
                                                     <span>order delivered</span>
                                                 </li>
                                             </ul>
@@ -142,10 +146,10 @@
                                                 <tbody>
                                                     {% for item in order.order_detail.all %}
                                                     <tr>
-                                                        <td class="table-serial"><h6>{{forloop.counter}}</h6></td>
+                                                        <td class="table-serial"><h6>{{forloop.counter }}</h6></td>
                                                         <td class="table-image"><img src="{{item.product.image.url}}" alt="product"></td>
                                                         <td class="table-name"><h6>{{item.product}}</h6></td>
-                                                        <td class="table-price"><h6>${{item.product.price}}</h6></td>
+                                                        <td class="table-price"><h6>${{item.price}}</h6></td>
                                                         <td class="table-brand"><h6>{{item.product.brand}}</h6></td>
                                                         <td class="table-quantity"><h6>{{item.quantity}}</h6></td>
                                                     </tr>
