@@ -50,40 +50,6 @@
         <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/css/index.css' %}">
         {% endblock cssfiles %}
 
-        {% comment %} {% if  LANGUAGE_CODE == 'en' %}
-            <!-- FONTS -->
-            <link rel="stylesheet" href="{% static 'en/fonts/flaticon/flaticon.css' %}">
-            <link rel="stylesheet" href="{% static 'en/fonts/icofont/icofont.min.css' %}">
-            <link rel="stylesheet" href="{% static 'en/fonts/fontawesome/fontawesome.min.css' %}">
-
-            <!-- VENDOR -->
-            <link rel="stylesheet" href="{% static 'en/vendor/venobox/venobox.min.css' %}">
-            <link rel="stylesheet" href="{% static 'en/vendor/slickslider/slick.min.css' %}">
-            <link rel="stylesheet" href="{% static 'en/vendor/niceselect/nice-select.min.css' %}">
-            <link rel="stylesheet" href="{% static 'en/vendor/bootstrap/bootstrap.min.css' %}">
-
-            <!-- CUSTOM -->
-            <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
-  {% endcomment %}
-        {% comment %} {% else %}
-            <link rel="stylesheet" href="{% static 'ar/fonts/flaticon/flaticon.css' %}">
-            <link rel="stylesheet" href="{% static 'ar/fonts/icofont/icofont.min.css' %}">
-            <link rel="stylesheet" href="{% static 'ar/fonts/fontawesome/fontawesome.min.css' %}">
-
-            <!-- VENDOR -->
-            <link rel="stylesheet" href="{% static 'ar/vendor/venobox/venobox.min.css' %}">
-            <link rel="stylesheet" href="{% static 'ar/vendor/slickslider/slick.min.css' %}">
-            <link rel="stylesheet" href="{% static 'ar/vendor/niceselect/nice-select.min.css' %}">
-            <link rel="stylesheet" href="{% static 'ar/vendor/bootstrap/bootstrap.min.css' %}">
-
-            <!-- CUSTOM -->
-            <link rel="stylesheet" href="{% static 'ar/css/main.css' %}">
-        {%endif%} {% endcomment %}
-        
-        {% comment %} {% block cssfiles %}
-        <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
-        {% endblock cssfiles %} {% endcomment %}
-
         <!--=====================================
                     CSS LINK PART END
         =======================================-->
