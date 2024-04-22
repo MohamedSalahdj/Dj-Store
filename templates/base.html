@@ -1,7 +1,9 @@
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" {% if LANGUAGE_CODE == 'ar' %} dir='rtl' {%endif%}>
     <head>
         <!--=====================================
                     META TAG PART START
@@ -31,24 +33,56 @@
         =======================================-->
         <!-- FAVICON -->
         <link rel="icon" href="images/favicon.png">
-
-        <!-- FONTS -->
-        <link rel="stylesheet" href="{% static 'en/fonts/flaticon/flaticon.css' %}">
-        <link rel="stylesheet" href="{% static 'en/fonts/icofont/icofont.min.css' %}">
-        <link rel="stylesheet" href="{% static 'en/fonts/fontawesome/fontawesome.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/flaticon/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/icofont/icofont.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/fontawesome/fontawesome.min.css' %}">
 
         <!-- VENDOR -->
-        <link rel="stylesheet" href="{% static 'en/vendor/venobox/venobox.min.css' %}">
-        <link rel="stylesheet" href="{% static 'en/vendor/slickslider/slick.min.css' %}">
-        <link rel="stylesheet" href="{% static 'en/vendor/niceselect/nice-select.min.css' %}">
-        <link rel="stylesheet" href="{% static 'en/vendor/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/vendor/venobox/venobox.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/vendor/slickslider/slick.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/vendor/niceselect/nice-select.min.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/vendor/bootstrap/bootstrap.min.css' %}">
 
         <!-- CUSTOM -->
-        <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
-        
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/css/main.css' %}">
+
         {% block cssfiles %}
-        <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+        <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/css/index.css' %}">
         {% endblock cssfiles %}
+
+        {% comment %} {% if  LANGUAGE_CODE == 'en' %}
+            <!-- FONTS -->
+            <link rel="stylesheet" href="{% static 'en/fonts/flaticon/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'en/fonts/icofont/icofont.min.css' %}">
+            <link rel="stylesheet" href="{% static 'en/fonts/fontawesome/fontawesome.min.css' %}">
+
+            <!-- VENDOR -->
+            <link rel="stylesheet" href="{% static 'en/vendor/venobox/venobox.min.css' %}">
+            <link rel="stylesheet" href="{% static 'en/vendor/slickslider/slick.min.css' %}">
+            <link rel="stylesheet" href="{% static 'en/vendor/niceselect/nice-select.min.css' %}">
+            <link rel="stylesheet" href="{% static 'en/vendor/bootstrap/bootstrap.min.css' %}">
+
+            <!-- CUSTOM -->
+            <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
+  {% endcomment %}
+        {% comment %} {% else %}
+            <link rel="stylesheet" href="{% static 'ar/fonts/flaticon/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'ar/fonts/icofont/icofont.min.css' %}">
+            <link rel="stylesheet" href="{% static 'ar/fonts/fontawesome/fontawesome.min.css' %}">
+
+            <!-- VENDOR -->
+            <link rel="stylesheet" href="{% static 'ar/vendor/venobox/venobox.min.css' %}">
+            <link rel="stylesheet" href="{% static 'ar/vendor/slickslider/slick.min.css' %}">
+            <link rel="stylesheet" href="{% static 'ar/vendor/niceselect/nice-select.min.css' %}">
+            <link rel="stylesheet" href="{% static 'ar/vendor/bootstrap/bootstrap.min.css' %}">
+
+            <!-- CUSTOM -->
+            <link rel="stylesheet" href="{% static 'ar/css/main.css' %}">
+        {%endif%} {% endcomment %}
+        
+        {% comment %} {% block cssfiles %}
+        <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+        {% endblock cssfiles %} {% endcomment %}
 
         <!--=====================================
                     CSS LINK PART END
@@ -160,16 +194,16 @@
                         <div class="navbar-content">
                             <ul class="navbar-list">
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="/">home</a>
+                                    <a class="navbar-link" href="/">{% translate "Home" %}</a>
                                 </li>
                                 <li class="navbar-item dropdown-megamenu">
-                                    <a class="navbar-link" href="products">shop</a>
+                                    <a class="navbar-link" href="products">{% translate "Shop" %}</a>
                                 </li>
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="{% url 'brand_list' %}">Brands</a>
+                                    <a class="navbar-link" href="{% url 'brand_list' %}">{% translate "Brands" %}</a>
                                 </li>
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="{% url 'order_list' %}">Orders</a>
+                                    <a class="navbar-link" href="{% url 'order_list' %}">{% translate "Orders" %}</a>
                                 </li>
                             </ul>
                             <div class="navbar-info-group">
