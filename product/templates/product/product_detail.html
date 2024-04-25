@@ -85,23 +85,20 @@
                                     <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
                                 </ul>
                             </div>
-                            <div class="details-add-group">
-                                <button class="product-add" title="Add to Cart">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span>add to cart</span>
-                                </button>
-                                <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                </div>
-                            </div>
-                            <div class="details-action-group">
-                                <a class="details-wish wish" href="#" title="Add Your Wishlist">
-                                    <i class="icofont-heart"></i>
-                                    <span>add to wish</span>
-                                </a>
-                            </div>
+                            <form method="POST" action="{% url 'add_to_cart' %}">
+                                {% csrf_token %}
+                                <div class="details-add-group">
+                                    <div class="col-lg-12">
+                                        <input class="action-input w-100 mb-1 rounded text-center" title="Quantity Number" type="number" name="quantity" value="1">
+                                        <input type="hidden" value="{{object.id}}" name="product_id">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button class="product-add" title="Add to Cart">
+                                            <i class="fas fa-shopping-basket"></i>
+                                            <span>add to cart</span>
+                                        </button>
+                                    </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -301,3 +298,8 @@
                     NEWSLETTER PART END
         =======================================-->
 {% endblock body %}
+
+
+{% block jsfiles %}
+
+{% endblock jsfiles %}
