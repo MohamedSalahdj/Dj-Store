@@ -366,11 +366,15 @@
             </div>
             <ul class="cart-list">
                 {% for item in cart_detail %}
-                    <li class="cart-item">
-                        <div class="cart-media">
-                            <a href="#"><img src="{{item.product.image.url}}" alt="product"></a>
-                            <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-                        </div>
+                     <li class="cart-item">
+                         <form method='POST' action="{% url 'remove_from_cart' item.product.id %}">
+                            {% csrf_token %}
+                            <div class="cart-media">
+                                <a><img src="{{item.product.image.url}}" alt="product"></a>
+                                <button type='submit' class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </form>
+                        
                         <div class="cart-info-group">
                             <div class="cart-info">
                                 <h6><a href="product-single.html">{{item.product}}</a></h6>

@@ -33,6 +33,13 @@ def add_to_cart(request):
     return redirect(f'/products/{product.slug}')
 
 
+@login_required
+def remove_from_cart(request, id):
+    cart_detail = CartDetail.objects.get(product=id)
+    cart_detail.delete()
+    return redirect('/')
+
+
 
 @login_required
 def checkout(request):
@@ -44,3 +51,5 @@ def checkout(request):
     }
 
     return render(request, 'orders/checkout.html', context)
+
+
