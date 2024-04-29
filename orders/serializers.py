@@ -18,9 +18,10 @@ class OrderDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderDetail
         fields = '__all__'
-        
+
 class OrderSerializer(serializers.ModelSerializer):
     order_detail = OrderDetailSerializer(many=True)
+    user = serializers.StringRelatedField()
     class Meta:
         model = Order
         fields = '__all__'
