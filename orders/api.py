@@ -5,29 +5,26 @@ from django.contrib.auth.models import User
 
 from product.models import Product
 from .models import Cart, CartDetail, Order, OrderDetail
-from .serializers import CartSerializer, OrderSerializer
+from .serializers import CartSerializer, OrderSerializer, OrderDetailSerializer
 
 
 class ListOrderAPI(generics.ListAPIView):
-    queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-    # def get_queryset(self):
-    #     queryset = super(ListOrderAPI, self).get_queryset()
+    def get_queryset(self): 
+        queryset = Order.objects.filter(user=User.objects.get(username=self.kwargs['username']))
+        return queryset
+
+    # def list(self, request, *args, **kwargs):
+    #     queryset =  super(ListOrderAPI, self).get_queryset()
     #     user = User.objects.get(username=self.kwargs['username'])
     #     queryset = queryset.filter(user=user)
-    #     return queryset
+    #     data = OrderSerializer(queryset, many=True).data    
+    #     return Response({'orders':data})
 
-    def list(self, request, *args, **kwargs):
-        queryset =  super(ListOrderAPI, self).get_queryset()
-        user = User.objects.get(username=self.kwargs['username'])
-        queryset = queryset.filter(user=user)
-        data = OrderSerializer(queryset, many=True).data    
-        return Response({'orders':data})
-
-    
-
-
+class OdrerDetailAPI(generics.RetrieveAPIView):
+    serializer_class = OrderDetailSerializer
+    queryset = OrderDetail.objects.all()
 
 
 class CartCreatRetriveDeleteAPI(generics.GenericAPIView): 
@@ -64,3 +61,6 @@ class CartCreatRetriveDeleteAPI(generics.GenericAPIView):
         cart = Cart.objects.get(user=user, status='Inprogress')
         data = CartSerializer(cart).data
         return Response({'msg':'Deleted item succsssfully', 'cart':data})
+    
+
+
