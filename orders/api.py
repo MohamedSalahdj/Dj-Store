@@ -20,7 +20,20 @@ class CartCreatRetriveDeleteAPI(generics.GenericAPIView):
         
 
     def post(self, request, *args, **kwargs):
-        pass
+        user = User.objects.get(username=self.kwargs['username'])
+        
+        product = Product.objects.get(id=request.data['product_id'])
+        quantity = request.data['quantity']
+
+        cart = Cart.objects.get(user=user)
+        cartdetail, created = CartDetail.objects.get_or_create(cart=cart, product=product)
+        cartdetail.quantity =int(quantity)
+        cartdetail.total = round(product.price * cartdetail.quantity, 2)
+        cartdetail.save()
+
+        data = CartSerializer(cart).data  
+        return Response({'msg':"Added item successfully", 'cart':data})
+
 
     def delete(self, request, *args, **kwargs):
         user = User.objects.get(username=self.kwargs['username'])
