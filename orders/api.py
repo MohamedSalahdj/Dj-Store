@@ -21,7 +21,6 @@ class CartCreatRetriveDeleteAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         user = User.objects.get(username=self.kwargs['username'])
-        
         product = Product.objects.get(id=request.data['product_id'])
         quantity = request.data['quantity']
 
