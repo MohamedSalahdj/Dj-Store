@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView
-from .models import Order, OrderDetail, Cart, CartDetail, Cupon 
+from .models import Order, OrderDetail, Cart, CartDetail, Coupon 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from product.models import Product

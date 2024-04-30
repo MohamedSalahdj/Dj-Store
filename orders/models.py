@@ -14,8 +14,8 @@ cart_status = (
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart_user', on_delete=models.CASCADE)
     status = models.CharField(choices=cart_status, max_length=10)
-    cupon = models.ForeignKey('Cupon', related_name='cart_cupon', on_delete = models.SET_NULL, null=True, blank=True)
-    total_with_cupon = models.FloatField(null=True, blank=True)
+    coupon = models.ForeignKey('Coupon', related_name='cart_coupon', on_delete = models.SET_NULL, null=True, blank=True)
+    total_with_coupon = models.FloatField(null=True, blank=True)
 
 
     def __str__(self):
@@ -49,11 +49,11 @@ order_status = (
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='order_user', on_delete=models.CASCADE)
     code = models.CharField(default=generate_code(), max_length=8, unique=True)
-    status = models.CharField(choices=order_status, max_length=10)
+    status = models.CharField(choices=order_status, max_length=10, default='Received')
     order_time = models.DateTimeField(default=timezone.now)
     delivery_time = models.DateTimeField(null=True, blank=True)
-    cupon = models.ForeignKey('Cupon', related_name='order_cupon', on_delete = models.SET_NULL, null=True, blank=True)
-    total_with_cupon = models.FloatField(null=True, blank=True)
+    coupon = models.ForeignKey('Coupon', related_name='order_coupon', on_delete = models.SET_NULL, null=True, blank=True)
+    total_with_coupon = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -73,7 +73,7 @@ class OrderDetail(models.Model):
         return str(self.order)
 
 
-class Cupon(models.Model):
+class Coupon(models.Model):
     code = models.CharField(max_length=25)
     discount = models.FloatField()
     quantity = models.IntegerField()
@@ -85,6 +85,6 @@ class Cupon(models.Model):
 
     def save(self, *args, **kwargs): 
         self.end_date = self.start_date + timedelta(weeks=7)
-        super(Cupon, self).save(*args, **kwargs)
+        super(Coupon, self).save(*args, **kwargs)
 
     

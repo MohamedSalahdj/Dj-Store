@@ -64,3 +64,32 @@ class CartCreatRetriveDeleteAPI(generics.GenericAPIView):
     
 
 
+class ApplyCouponAPI(generics.GenericAPIView):
+    pass
+
+
+class CreateOrderAPI(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.kwargs['username'])
+        cart = Cart.objects.get(user=user, status='Inprogress')
+        cart_detail = CartDetail.objects.filter(cart=cart)
+
+        new_order = Order.objects.create(
+            user = user,
+            coupon = cart.coupon,
+            total_with_coupon = cart.total_with_coupon
+        )
+
+        for item in cart_detail:
+            OrderDetail.objects.create (
+                order = new_order,
+                product = item.product,
+                quantity =  item.quantity,
+                price = item.product.price,
+                total = round(item.product.price * int(item.quantity), 2)
+            )
+
+        cart.status = 'Completed'
+        cart.save()
+
+        return Response({'msg':"Created order successfully"})
