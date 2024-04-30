@@ -14,5 +14,6 @@ urlpatterns = [
     path('<str:username>/list-order', ListOrderAPI.as_view()),
     path('<str:username>/<int:pk>/detail', OdrerDetailAPI.as_view()),
     path('<str:username>/create-order', CreateOrderAPI.as_view()),
+    path('<str:username>/apply-coupon', ApplyCouponAPI.as_view()),
 
 ]

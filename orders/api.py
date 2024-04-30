@@ -2,9 +2,9 @@ from rest_framework import generics
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-
+import datetime
 from product.models import Product
-from .models import Cart, CartDetail, Order, OrderDetail
+from .models import Cart, CartDetail, Order, OrderDetail, Coupon
 from .serializers import CartSerializer, OrderSerializer, OrderDetailSerializer
 
 
@@ -65,8 +65,27 @@ class CartCreatRetriveDeleteAPI(generics.GenericAPIView):
 
 
 class ApplyCouponAPI(generics.GenericAPIView):
-    pass
+    def post(self, request, *args, **kwargs):
+        cart = Cart.objects.get(user=User.objects.get(username=self.kwargs['username']), status='Inprogress')
 
+        coupon = get_object_or_404(Coupon, code=self.request.data['coupon_code'])
+
+        if coupon and coupon.quantity > 0:
+            today_date = datetime.datetime.today().date()    
+            if today_date >= coupon.start_date.date() and today_date <= coupon.end_date.date():
+                coupon_value = cart.cart_total * (coupon.discount /100)
+                cart_total = cart.cart_total - coupon_value
+
+                cart.coupon = coupon
+                cart.total_with_coupon = cart_total
+                cart.save()
+                data = CartSerializer(cart).data
+                return Response({'msg':"Coupon appllied successfully", 'cart' : data})
+            else:
+                return Response({'msg':"Coupon date expired"})
+        else:
+            return Response({'msg':'No coupon found'})
+        
 
 class CreateOrderAPI(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
