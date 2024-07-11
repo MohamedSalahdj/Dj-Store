@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView
-from .models import Order, OrderDetail, Cart, CartDetail, Coupon 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+from .models import Order, OrderDetail, Cart, CartDetail, Coupon 
 from product.models import Product
 
 class ListOrder(LoginRequiredMixin, ListView):
@@ -19,17 +21,16 @@ def add_to_cart(request):
     product = Product.objects.get(id=request.POST['product_id'])
     quantity = request.POST['quantity']
     if quantity.isnumeric() and int(quantity) <= product.quantity:
-        cart = Cart.objects.get(user=request.user, status='Inprogress')
-        cart_details, created = CartDetail.objects.get_or_create(cart=cart, product=product)
-        if not created:
-            cart_details.quantity += int(quantity)
-            cart_details.total = round(product.price * cart_details.quantity, 2)
-            print(cart_details.quantity)
-            cart_details.save()
-        else:
-            cart_details.quantity = int(quantity)
-            cart_details.total = round(product.price * cart_details.quantity, 2)
-            cart_details.save()        
+            cart = Cart.objects.get(user=request.user, status='Inprogress')
+            cart_detail, created = CartDetail.objects.get_or_create(cart=cart, product=product)
+            cart_detail.quantity = int(quantity)
+            cart_detail.total = round(product.price * cart_detail.quantity ,2)
+            cart_detail.save()
+            
+            messages.success(request, "Added to cart successfully")
+    else:
+        messages.error(request, "Enter the right quantity")
+
     return redirect(f'/products/{product.slug}')
 
 
