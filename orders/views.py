@@ -63,7 +63,6 @@ def decrease_quantity(request, pk):
     return redirect('/')
 
 
-
 @login_required
 def remove_from_cart(request, id):
     cart_detail = CartDetail.objects.get(product=id)
