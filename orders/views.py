@@ -48,7 +48,19 @@ def increase_quantity(request):
         messages.error(request, "quantity lower than it")
     return redirect('/')
 
-
+@login_required
+def decrease_quantity(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    cart = Cart.objects.get(user=request.user, status='Inprogress')
+    cart_detail = CartDetail.objects.get(cart=cart, product=product)
+    if cart_detail.quantity > 1:
+        cart_detail.quantity -=1
+        cart_detail.total = round( product.price * cart_detail.quantity, 2)
+        cart_detail.save()
+        messages.success(request, "decrease quantity")
+    else:
+        messages.error(request, "quantity lower than it")
+    return redirect('/')
 
 
 
