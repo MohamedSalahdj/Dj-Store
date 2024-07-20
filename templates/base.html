@@ -383,8 +383,15 @@
                             <div class="cart-action-group">
                                 <div class="product-action">
                                     <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                    
                                     <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item.quantity}}">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+
+                                    <form method='POST' action="{% url 'increase_quantity' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{item.product.id}}">
+                                        <button type="submit" class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                    </form>
+
                                 </div>
                                 <h6>${{item.total}}</h6>
                             </div>

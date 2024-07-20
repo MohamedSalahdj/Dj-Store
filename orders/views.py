@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -32,6 +32,24 @@ def add_to_cart(request):
         messages.error(request, "Enter the right quantity")
 
     return redirect(f'/products/{product.slug}')
+
+
+@login_required
+def increase_quantity(request):
+    product = get_object_or_404(Product, id=request.POST['product_id'])
+    cart = Cart.objects.get(user=request.user, status='Inprogress')
+    cart_detail = CartDetail.objects.get(cart=cart, product=product)
+    if cart_detail.quantity < product.quantity:
+        cart_detail.quantity +=1
+        cart_detail.total = round( product.price * cart_detail.quantity, 2)
+        cart_detail.save()
+        messages.success(request, "increase quantity")
+    else:
+        messages.error(request, "quantity lower than it")
+    return redirect('/')
+
+
+
 
 
 @login_required
