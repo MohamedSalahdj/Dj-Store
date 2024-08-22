@@ -33,6 +33,8 @@
         =======================================-->
         <!-- FAVICON -->
         <link rel="icon" href="images/favicon.png">
+
+
         <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/flaticon/flaticon.css' %}">
         <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/icofont/icofont.min.css' %}">
         <link rel="stylesheet" href="{% static LANGUAGE_CODE|add:'/fonts/fontawesome/fontawesome.min.css' %}">
@@ -66,7 +68,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
                         <div class="header-top-welcome">
-                            <p>Welcome to Ecomart in Your Dream Online Store!</p>
+                            <p>{% translate "Welcome to Ecomart in Your Dream Online Store!" %}</p>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-3">
@@ -92,9 +94,9 @@
                     </div>
                     <div class="col-md-7 col-lg-4">
                         <ul class="header-top-list">
-                            <li><a href="offer.html">offers</a></li>
-                            <li><a href="faq.html">need help</a></li>
-                            <li><a href="contact.html">contact us</a></li>
+                            <li><a href="offer.html">{% translate "offers" %}</a></li>
+                            <li><a href="faq.html">{% translate "need help" %}</a></li>
+                            <li><a href="contact.html">{% translate "contact us" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -122,12 +124,12 @@
                         <img src="{{company.logo.url}}" alt="logo">
                     </a>
                     <a href="login.html" class="header-widget" title="My Account">
-                        <img src="images/user.png" alt="user">
-                        <span>join</span>
+                        <img src="images/user.png" alt="{% translate "user" %}">
+                        <span>{% translate "join" %}</span>
                     </a>
 
                     <form class="header-form">
-                        <input type="text" placeholder="Search anything...">
+                        <input type="text" placeholder="{% translate "Search anything..." %}">
                         <button><i class="fas fa-search"></i></button>
                     </form>
 
@@ -139,7 +141,7 @@
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
                             <sup>{{cart_detail|length}}</sup>
-                            <span>total price<small>${{cart.cart_total}}</small></span>
+                            <span>{% translate "total price" %}<small>${{cart.cart_total}}</small></span>
                         </button>
                     </div>
                 </div>
@@ -176,14 +178,14 @@
                                 <div class="navbar-info">
                                     <i class="icofont-ui-touch-phone"></i>
                                     <p>
-                                        <small>call us</small>
+                                        <small>{% translate "call us" %}</small>
                                         <span>{{company.call_us}}</span>
                                     </p>
                                 </div>
                                 <div class="navbar-info">
                                     <i class="icofont-ui-email"></i>
                                     <p>
-                                        <small>email us</small>
+                                        <small>{% translate "email us" %}</small>
                                         <span>{{company.email_us}}</span>
                                     </p>
                                 </div>
@@ -427,7 +429,7 @@
                 <div class="nav-btn">
                     <a href="login.html" class="btn btn-inline">
                         <i class="fa fa-unlock-alt"></i>
-                        <span>join here</span>
+                        <span>{% translate "join here" %}</span>
                     </a>
                 </div>
                 <!-- This commentable code show when user login or register -->
@@ -534,7 +536,7 @@
                     <div class="nav-info">
                         <i class="icofont-ui-email"></i>
                         <p>
-                            <small>email us</small>
+                            <small>{% translate "email us" %}</small>
                             <span>support@greeny.com</span>
                         </p>
                     </div>

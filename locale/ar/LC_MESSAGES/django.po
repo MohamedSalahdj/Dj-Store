@@ -2,22 +2,52 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 01:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2024-08-22 18:08+0300\n"
+"PO-Revision-Date: 2024-08-22 18:10+0000\n"
+"Last-Translator:   <mohamedsamydj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\accounts\models.py:11
+#, fuzzy
+#| msgid "Image"
+msgid "User Image"
+msgstr "الصورة"
+
+#: .\accounts\models.py:12
+msgid "User Code Verify"
+msgstr "التحقق من رمز المستخدم"
+
+#: .\accounts\models.py:32
+msgid "Mobile Type"
+msgstr "نوع الجوال"
+
+#: .\accounts\models.py:33
+msgid "Mobile Phone"
+msgstr "الهاتف المحمول"
+
+#: .\accounts\models.py:48
+#, fuzzy
+#| msgid "Address"
+msgid "Address Type"
+msgstr "العنوان"
+
+#: .\accounts\models.py:49
+#, fuzzy
+#| msgid "Address"
+msgid "User Address"
+msgstr "العنوان"
 
 #: .\product\models.py:15 .\product\models.py:48 .\settings\models.py:6
 msgid "Name"
@@ -123,20 +153,63 @@ msgstr "اتصل بنا"
 msgid "Email US"
 msgstr "ارسل لنا عبر البريد الألكتروني"
 
-#: .\templates\base.html:163
+#: .\templates\base.html:71
+msgid "Welcome to Ecomart in Your Dream Online Store!"
+msgstr "مرحباً بكم في متجر Ecomart في متجر أحلامك عبر الإنترنت!"
+
+#: .\templates\base.html:97
+msgid "offers"
+msgstr "العروض"
+
+#: .\templates\base.html:98
+msgid "need help"
+msgstr "بحاجة الى مساعدة"
+
+#: .\templates\base.html:99
+msgid "contact us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:127
+msgid "user"
+msgstr "مستخدم"
+
+#: .\templates\base.html:128
+msgid "join"
+msgstr "انضم"
+
+#: .\templates\base.html:132
+msgid "Search anything..."
+msgstr "ابحث عن أي شيء..."
+
+#: .\templates\base.html:144
+msgid "total price"
+msgstr "السعر الاجمالي"
+
+#: .\templates\base.html:165
 msgid "Home"
 msgstr "الصفحة الرئيسة"
 
-#: .\templates\base.html:166
+#: .\templates\base.html:168
 msgid "Shop"
 msgstr "التسوق"
 
-#: .\templates\base.html:169
-#, fuzzy
-#| msgid "Brand"
+#: .\templates\base.html:171
 msgid "Brands"
-msgstr "الماركة"
+msgstr "الماركات"
 
-#: .\templates\base.html:172
+#: .\templates\base.html:174
 msgid "Orders"
 msgstr "الطالبات"
+
+#: .\templates\base.html:181
+msgid "call us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:188 .\templates\base.html:539
+#| msgid "call us"
+msgid "email us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:432
+msgid "join here"
+msgstr "انضم هنا"
