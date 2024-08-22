@@ -6,3 +6,13 @@ from .models import Profile, ContactNumber, Address
 
 def register(request):
     pass
+
+
+
+def profile(request):
+
+    context = {
+        
+    }
+
+    return render(request, 'registration/profile.html')
