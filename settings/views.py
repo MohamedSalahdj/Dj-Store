@@ -6,7 +6,7 @@ from product.models import Product, Brand, Review
 from django.db.models.aggregates import Count
 
 
-@cache_page(60 * 15)
+@cache_page(60 * 60 * 10)
 def home(request):
     brands = Brand.objects.all().annotate(product_count=Count('brand_product'))
     sale_products = Product.objects.filter(flag='Sale')[:10]
