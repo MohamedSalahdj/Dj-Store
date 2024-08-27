@@ -191,15 +191,15 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'jwt-auth',
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
+# local folder for translation
 LOCALE_PATHS = [
     'locale'
 ]
 
-
+# Authentication for login with username OR email
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend',
