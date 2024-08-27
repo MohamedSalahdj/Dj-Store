@@ -61,10 +61,15 @@ def activate_accounts(request, username):
     return render(request, "accounts/activate.html", context)
 
 
-def profile(request):
-
+def profile(request, username):
+    user = User.objects.select_related(
+        'user_profile'
+    ).prefetch_related(
+        'user_number', 'user_address'
+    ).get(username=username)
+    
     context = {
-        
+        'user': user
     }
 
-    return render(request, 'registration/profile.html')  
+    return render(request, 'accounts/profile.html', context)  

@@ -28,7 +28,7 @@ PHONE_TYPE = (
 )
 
 class ContactNumber(models.Model):
-    user = models.OneToOneField(User, verbose_name='User', on_delete=models.CASCADE, related_name='user_number')
+    user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE, related_name='user_number')
     type = models.CharField(_('Mobile Type'), choices=PHONE_TYPE, max_length=9)
     phone = models.CharField(_('Mobile Phone'), max_length=13)
 
@@ -44,7 +44,7 @@ ADDRESS_TYPE = (
 )
 
 class Address(models.Model):
-    user = models.OneToOneField(User, verbose_name='User', on_delete=models.CASCADE, related_name='user_address')
+    user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE, related_name='user_address')
     type = models.CharField(_('Address Type'), choices=ADDRESS_TYPE, max_length=8)
     Address = models.TextField(_('User Address'), max_length=150)
 
