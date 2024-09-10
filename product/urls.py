@@ -7,9 +7,9 @@ app_name ='product'
 urlpatterns = [
     path('',ProductList.as_view(), name='product_list'),
     path('debug',queryset_debug),
+    path('brands/', BrandList.as_view(), name='brand_list'),
+    path('brands/<slug:slug>/', BrandDetail.as_view(), name='brand_details'),
     path('<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
-    path('brand/', BrandList.as_view(), name='brand_list'),
-    path('brand/<slug:slug>/', BrandDetail.as_view(), name='brand_details'),
     path('add-review/<slug:slug>/', add_review, name='add_review'),
 
     #api urls
