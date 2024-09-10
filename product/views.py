@@ -1,10 +1,10 @@
 from typing import Any, Dict
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from django.db.models import Q, F, Value 
 from django.db.models.aggregates import Min, Max, Sum, Count, Avg 
 from .models import Product, Product_Images, Brand, Review
-
 
 def queryset_debug(request):
 
@@ -75,7 +75,8 @@ def queryset_debug(request):
     #annotate 
     # data = Product.objects.annotate(is_new=Value(True))
     data = Product.objects.annotate(price_with_discount=F('price')*0.959)
-
+    
+    
 
     context = {
         'data' : data
@@ -119,3 +120,20 @@ class BrandDetail(ListView):
         return context
 
     
+def add_review(request, slug):
+    product = Product.objects.get(slug=slug)
+
+    # get input from form
+    rate = request.POST['rate']
+    review = request.POST['review']
+
+    Review.objects.create(
+        review=review,
+        rate=rate,
+        customer=request.user,
+        Product=product
+    )
+
+    return redirect(reverse("products:product_detail", kwargs={'slug':slug}))
+
+
