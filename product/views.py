@@ -1,7 +1,10 @@
 from typing import Any, Dict
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from django.db.models import Q, F, Value 
 from django.db.models.aggregates import Min, Max, Sum, Count, Avg 
 from .models import Product, Product_Images, Brand, Review
@@ -119,7 +122,7 @@ class BrandDetail(ListView):
         context['brand'] = Brand.objects.filter(slug=self.kwargs['slug']).annotate(product_count=Count('brand_product'))[0]
         return context
 
-    
+@login_required
 def add_review(request, slug):
     product = Product.objects.get(slug=slug)
 
@@ -134,6 +137,9 @@ def add_review(request, slug):
         Product=product
     )
 
-    return redirect(reverse("products:product_detail", kwargs={'slug':slug}))
+    reviews = Review.objects.filter(Product=product)
+    html = render_to_string('product/includes/product_review.html', {'reviews': reviews})
+    
+    return JsonResponse({'result': html})
 
 
