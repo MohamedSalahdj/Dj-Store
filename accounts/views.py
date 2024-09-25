@@ -5,7 +5,9 @@ from django.core.mail import send_mail
 
 from .forms import UserRegistrationForm, UserActivateForm
 from .models import Profile, ContactNumber, Address
-from utils.send_email import send_emails
+from .tasks import send_emails
+
+
 
 def register(request):
     if request.method == 'POST':
@@ -23,8 +25,7 @@ def register(request):
             profile = Profile.objects.get(user__username=username)
             
             # Send activation email
-            
-            send_emails(username, profile.code, email)
+            send_emails.delay(username, profile.code, email)
 
             return redirect(reverse("activate_account", args=[username]))
 

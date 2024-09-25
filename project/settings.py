@@ -192,8 +192,6 @@ REST_AUTH = {
 }
 
 
-
-
 # local folder for translation
 LOCALE_PATHS = [
     'locale'
@@ -224,6 +222,15 @@ CACHES = {
     }
 }
 
+
+# set the celery broker url
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# set the celery result backend
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# set the celery timezone
+# CELERY_TIMEZONE = 'UTC' 
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
