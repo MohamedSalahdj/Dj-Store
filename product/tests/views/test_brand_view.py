@@ -36,7 +36,13 @@ class BrandListViewTest(TestCase):
         self.assertIn('is_paginated', response.context)
         self.assertEqual(len(response.context['brand_list']), 20)
     
-    def test_brand_pagination_second_page(self):
+    def test_brand_list_pagination_second_page(self):
         """Test if second page of pagination returns the remaining 15 brands."""
         response = self.client.get(reverse('product:brand_list') + '?page=2')
         self.assertEqual(len(response.context['brand_list']), 15)
+    
+    def test_brand_list_queryset_annotation(self):
+        """Test if the 'product_count' annotation is included in the queryset."""
+        response = self.client.get(reverse('product:brand_list'))
+        brand_list = response.context['brand_list']
+        self.assertTrue(hasattr(brand_list[0], 'product_count'))
