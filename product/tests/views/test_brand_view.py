@@ -29,3 +29,14 @@ class BrandListViewTest(TestCase):
         """Test if the correct template is used for BrandList view."""
         response = self.client.get(reverse('product:brand_list'))
         self.assertTemplateUsed(response, 'product/brand_list.html')
+
+    def test_brand_list_pagination(self):
+        """Test if pagination returns correct number of brands per page."""
+        response = self.client.get(reverse('product:brand_list'))
+        self.assertIn('is_paginated', response.context)
+        self.assertEqual(len(response.context['brand_list']), 20)
+    
+    def test_brand_pagination_second_page(self):
+        """Test if second page of pagination returns the remaining 15 brands."""
+        response = self.client.get(reverse('product:brand_list') + '?page=2')
+        self.assertEqual(len(response.context['brand_list']), 15)
