@@ -25,3 +25,7 @@ class BrandListViewTest(TestCase):
         response = self.client.get(reverse('product:brand_list'))
         self.assertEqual(response.status_code, 200)
 
+    def test_brand_list_template(self):
+        """Test if the correct template is used for BrandList view."""
+        response = self.client.get(reverse('product:brand_list'))
+        self.assertTemplateUsed(response, 'product/brand_list.html')
