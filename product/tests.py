@@ -17,12 +17,18 @@ class BrandTestModel(TestCase):
             )
 
     def test_brand_name(self):
+        """Verify the brand name is correctly set to 'Apple Test'."""
         self.assertEqual(self.brand.name, "Apple Test")
 
     def test_brand_slug(self):
+        """Verify the brand slug starts with a lowercase letter and uses '-' between words."""
         self.assertEqual(self.brand.slug, "apple-test")
     
     def test_brand_image_exists(self):
+        """
+        Ensure the image is saved in the expected 'brands' directory.
+        Verify the image file name contains 'apple'.
+        """
         self.assertTrue(self.brand.image.name.startswith("brands/"))
         self.assertIn("apple", self.brand.image.name)
 
