@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.urls import reverse
+
 from product.models import Brand
 
 
@@ -17,4 +19,9 @@ class BrandListViewTest(TestCase):
                     name=f'Samsung-{i}',
                     image=cls.image
                 )
+
+    def test_brand_list_status_code(self):
+        """Test if the BrandList view returns a 200 status code."""
+        response = self.client.get(reverse('product:brand_list'))
+        self.assertEqual(response.status_code, 200)
 
