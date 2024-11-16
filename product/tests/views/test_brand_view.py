@@ -46,3 +46,11 @@ class BrandListViewTest(TestCase):
         response = self.client.get(reverse('product:brand_list'))
         brand_list = response.context['brand_list']
         self.assertTrue(hasattr(brand_list[0], 'product_count'))
+    
+    def test_brand_list_queryset_annotation_count(self):
+        """Test if the 'product_count' equal zero annotation is included in the queryset."""
+        response = self.client.get(reverse('product:brand_list'))
+        brand_list = response.context['brand_list']
+        self.assertEqual(brand_list[0].product_count, 0)
+    
+    
