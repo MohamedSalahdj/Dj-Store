@@ -37,3 +37,7 @@ class ProductTestModel(TestCase):
             subtittle='Apple iPhone 16 Pro Max (256 GB) - Desert Titanium',
             brand=cls.brand
         )
+
+    def test_product_name(self):
+        """Verify the product name is correctly set to 'iPhone 16'."""
+        self.assertEqual(self.product.name, "iPhone 16")
