@@ -39,5 +39,15 @@ class ProductTestModel(TestCase):
         )
 
     def test_product_name(self):
-        """Verify the product name is correctly set to 'iPhone 16'."""
+        """Test the product name is correctly set to 'iPhone 16'."""
         self.assertEqual(self.product.name, "iPhone 16")
+
+    def test_product_name_verbose_name(self):
+        """Test the verbose name of product name is correctly"""
+        field_label = self.product._meta.get_field('name').verbose_name
+        self.assertEqual(field_label, 'Name')
+
+    def test_product_max_length(self):
+        """Test the product max_length of the 'name' field is 125."""
+        max_length = self.product._meta.get_field('name').max_length
+        self.assertTrue(max_length==125)
